@@ -138,10 +138,12 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 gen = Generator().to(device)
 dis = Discriminator().to(device)
 
-g_optimizer = torch.optim.Adam(gen.parameters(), lr=0.001, betas=(0.5, 0.999))
-d_optimizer = torch.optim.Adam(dis.parameters(), lr=0.001, betas=(0.5, 0.999))
-# g_optimizer = torch.optim.RMSprop(gen.parameters(), lr=0.001)
-# d_optimizer = torch.optim.RMSprop(dis.parameters(), lr=0.001)
+LEARNING_RATE = 0.001
+
+g_optimizer = torch.optim.Adam(gen.parameters(), lr=LEARNING_RATE, betas=(0.5, 0.999))
+d_optimizer = torch.optim.Adam(dis.parameters(), lr=LEARNING_RATE, betas=(0.5, 0.999))
+# g_optimizer = torch.optim.RMSprop(gen.parameters(), lr=LEARNING_RATE)
+# d_optimizer = torch.optim.RMSprop(dis.parameters(), lr=LEARNING_RATE)
 
 loss_fn = nn.BCELoss()
 L1_loss_fn = nn.L1Loss()
